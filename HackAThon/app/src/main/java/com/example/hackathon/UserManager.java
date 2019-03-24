@@ -21,49 +21,49 @@ public class UserManager {
     public static void addManager(){
         addUserAccount(new User("admin", "admin", "admin@admin"));
     }
-    /**
-     * Reads users from a file and adds them to userAccounts list.
-     * Format of: username, password
-     */
-    public static void userToFile() {
-        try {
-            BufferedWriter file = new BufferedWriter(new FileWriter("./users.txt"));
-            for (User userAccount : userAccounts) {
-                String password = userAccount.getPassword();
-                String username = userAccount.getUsername();
-                String email = userAccount.getEmail();
-                file.write(username + "," + password + "," + email);
-                file.newLine();
-            }
-            file.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Reads in the list of user accounts from a file.
-     * Format of: email, password
-     */
-    public static void userFromFile() throws IOException {
-        userAccounts = new ArrayList<>();
-        File file = new File("./users.txt");
-        if (file.exists()) {
-            try {
-                String line;
-                BufferedReader fileTemp = new BufferedReader(new FileReader("./users.txt"));
-                while ((line = fileTemp.readLine()) != null) {
-                    String[] info = line.split(",");
-                    addUserAccount(new User(info[0], info[1], info[2]));
-                }
-                fileTemp.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            file.createNewFile();
-        }
-    }
+//    /**
+//     * Reads users from a file and adds them to userAccounts list.
+//     * Format of: username, password
+//     */
+//    public static void userToFile() {
+//        try {
+//            BufferedWriter file = new BufferedWriter(new FileWriter("./users.txt"));
+//            for (User userAccount : userAccounts) {
+//                String password = userAccount.getPassword();
+//                String username = userAccount.getUsername();
+//                String email = userAccount.getEmail();
+//                file.write(username + "," + password + "," + email);
+//                file.newLine();
+//            }
+//            file.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    /**
+//     * Reads in the list of user accounts from a file.
+//     * Format of: email, password
+//     */
+//    public static void userFromFile() throws IOException {
+//        userAccounts = new ArrayList<>();
+//        File file = new File("./users.txt");
+//        if (file.exists()) {
+//            try {
+//                String line;
+//                BufferedReader fileTemp = new BufferedReader(new FileReader("./users.txt"));
+//                while ((line = fileTemp.readLine()) != null) {
+//                    String[] info = line.split(",");
+//                    addUserAccount(new User(info[0], info[1], info[2]));
+//                }
+//                fileTemp.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        } else {
+//            file.createNewFile();
+//        }
+//    }
 
     public static void addUserAccount(User user){
         userAccounts.add(user);

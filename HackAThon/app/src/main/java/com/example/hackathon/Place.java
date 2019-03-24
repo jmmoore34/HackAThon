@@ -1,24 +1,32 @@
 package com.example.hackathon;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Place {
 
-    private String address;
+    private LatLng address;
    // private ArrayList<Integer> rateList;
     private ArrayList<String> categories;
     //private double rating;
+    private String name;
 
-    public Place(String address, ArrayList<String> categories){
+    public Place(LatLng address, ArrayList<String> categories, String name){
         //reviewsFromFile();
         this.address = address;
        // this.rateList = rateList;
         //this.rating = getRating();
         this.categories = categories;
+        this.name = name;
     }
 
-    public String getAddress() {
+    public String getName() {
+        return name;
+    }
+
+    public LatLng getAddress() {
         return address;
     }
 

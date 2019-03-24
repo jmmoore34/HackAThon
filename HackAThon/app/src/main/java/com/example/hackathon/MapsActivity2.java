@@ -1,5 +1,6 @@
 package com.example.hackathon;
 
+import android.content.ClipData;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -20,6 +21,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.ArrayList;
 
 public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -83,31 +86,54 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
                     public void onDrawerStateChanged(int newState) {
                         // Respond when the drawer motion state changes
                     }
+
+
                 }
         );
+
+        NavigationView option = findViewById(R.id.nav_access);
+        option.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCatagory("accessible");
+            }
+        });
     }
 
+
+    public void setCatagory(String catagory){
+        // Add a marker in Sydney and move the camera
+        for(Place plc : PlaceManager.getCategory(catagory)) {
+            LatLng temp = plc.getAddress();
+            mMap.addMarker(new MarkerOptions().position(plc.getAddress()).title(plc.getName())
+                    .snippet("This location is " + catagory)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+        }
+    }
 
     private static final String TAG = MapsActivity.class.getSimpleName();
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        ArrayList<String> temp = new ArrayList<>();
+        temp.add("accessible");
+        PlaceManager.addPlace(new Place(new LatLng(43.664415, -79.399590), temp, "Robarts Library"));
+        PlaceManager.addPlace(new Place(new LatLng(43.668154, -79.397678), temp, "Tim Hortons"));
         // Add a marker in Sydney and move the camera
         LatLng toronto = new LatLng(43.663376, -79.397599);
         mMap.addMarker(new MarkerOptions().position(toronto).title("Your Location")
                 .snippet("This location has a Ramp and Electronic Entrance")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
 
-        LatLng robarts = new LatLng(43.664415, -79.399590);
-        mMap.addMarker(new MarkerOptions().position(robarts).title("Robarts Library")
-                .snippet("This location has an Electronic Entrance")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+//        LatLng robarts = new LatLng(43.664415, -79.399590);
+//        mMap.addMarker(new MarkerOptions().position(robarts).title("Robarts Library")
+//                .snippet("This location has an Electronic Entrance")
+//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
 
-        LatLng timhortons = new LatLng(43.668154, -79.397678);
-        mMap.addMarker(new MarkerOptions().position(timhortons).title("Tim Hortons")
-                .snippet("246 Bloor St W, Toronto, ON M5S 1V4")                .icon(BitmapDescriptorFactory.fromResource(R.drawable.food2)));
+//        LatLng timhortons = new LatLng(43.668154, -79.397678);
+//        mMap.addMarker(new MarkerOptions().position(timhortons).title("Tim Hortons")
+//                .snippet("246 Bloor St W, Toronto, ON M5S 1V4")                .icon(BitmapDescriptorFactory.fromResource(R.drawable.food2)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
         try {

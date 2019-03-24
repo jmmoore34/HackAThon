@@ -46,8 +46,8 @@ public class MapsActivity extends FragmentActivity {
 //        PlaceManager.placesFromFile();
         final Button login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                 EditText username = findViewById(R.id.user_name);
                 EditText password = findViewById(R.id.user_password);
                 User user = UserManager.login(username.getText().toString(), password.getText().toString());
