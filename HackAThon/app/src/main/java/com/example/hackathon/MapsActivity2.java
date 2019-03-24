@@ -9,8 +9,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
@@ -44,9 +46,12 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng toronto = new LatLng(43.663376, -79.397599);
+        mMap.addMarker(new MarkerOptions().position(toronto).title("Marker in Toronto")
+                .snippet("This location has a Ramp and Electronic Entrance")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
