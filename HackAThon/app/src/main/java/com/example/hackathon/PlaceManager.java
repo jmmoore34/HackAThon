@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 public class PlaceManager {
 
-    ArrayList<Place> places;
+    private static ArrayList<Place> places;
 
     public PlaceManager(){
         places = new ArrayList<>();
         placesFromFile();
     }
 
-    public void addPlace(Place place){
+    public static void addPlace(Place place){
         places.add(place);
         placesToFile();
     }
 
-    public Place getPlaceByAddress(String address){
+    public static Place getPlaceByAddress(String address){
         for(Place plc: places){
             if(plc.getAddress().equalsIgnoreCase(address)){
                 return plc;
@@ -34,7 +34,7 @@ public class PlaceManager {
      * Reads users from a file and adds them to userAccounts list.
      * Format of: username, password
      */
-    public void placesToFile() {
+    public static void placesToFile() {
         try {
             BufferedWriter file = new BufferedWriter(new FileWriter("./places.txt"));
             for (Place place: places){
@@ -55,11 +55,12 @@ public class PlaceManager {
      * Reads in the list of user accounts from a file.
      * Format of: email, password
      */
-    private void placesFromFile() {
+    public static void placesFromFile() {
+        places = new ArrayList<>();
         if (new File("./places.txt").exists()) {
             try {
                 String line;
-                BufferedReader file = new BufferedReader(new FileReader("./users.txt"));
+                BufferedReader file = new BufferedReader(new FileReader("./places.txt"));
                 while ((line = file.readLine()) != null) {
                     String[] info = line.split(",");
                     ArrayList<String> temp = new ArrayList<>();
@@ -75,7 +76,7 @@ public class PlaceManager {
         }
     }
 
-    public ArrayList<Place> getCatagory(String category){
+    public static ArrayList<Place> getCatagory(String category){
         ArrayList<Place> temp = new ArrayList<>();
         for(Place plc : places){
             if(plc.hasCategory(category)){

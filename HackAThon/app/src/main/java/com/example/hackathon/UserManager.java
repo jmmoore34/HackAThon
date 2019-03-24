@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class UserManager {
 
-    ArrayList<User> userAccounts;
+    public static ArrayList<User> userAccounts;
 
     public UserManager(){
         userAccounts = new ArrayList<>();
@@ -18,14 +18,14 @@ public class UserManager {
         addManager();
     }
 
-    public void addManager(){
+    public static void addManager(){
         addUserAccount(new User("admin", "admin", "admin@admin"));
     }
     /**
      * Reads users from a file and adds them to userAccounts list.
      * Format of: username, password
      */
-    public void userToFile() {
+    public static void userToFile() {
         try {
             BufferedWriter file = new BufferedWriter(new FileWriter("./users.txt"));
             for (User userAccount : userAccounts) {
@@ -45,7 +45,9 @@ public class UserManager {
      * Reads in the list of user accounts from a file.
      * Format of: email, password
      */
-    private void userFromFile() {
+    public static void userFromFile() {
+        userAccounts = new ArrayList<>();
+        addManager();
         if (new File("./users.txt").exists()) {
             try {
                 String line;
@@ -61,12 +63,12 @@ public class UserManager {
         }
     }
 
-    public void addUserAccount(User user){
+    public static void addUserAccount(User user){
         userAccounts.add(user);
         userToFile();
     }
 
-    public boolean signUp(String username, String password, String email){
+    public static boolean signUp(String username, String password, String email){
         for(User user : userAccounts){
             if(email.equals(user.getUsername())){
                 return false;
@@ -77,12 +79,30 @@ public class UserManager {
         return true;
     }
 
-    public User login(String username, String password){
+    public static User login(String username, String password){
         for(User us : userAccounts){
             if(us.getUsername().equals(username) && us.getPassword().equals(password)){
                 return us;
             }
         }
         return null;
+    }
+
+    public static boolean usernameAvailable(String username){
+        for(User user : userAccounts){
+            if(user.getUsername().equals(username)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean emailAvailable(String email){
+        for(User user : userAccounts){
+            if(user.getEmail().equals(email)){
+                return false;
+            }
+        }
+        return true;
     }
 }
