@@ -18,24 +18,10 @@ public class Place {
         this.categories = categories;
     }
 
-    //public ArrayList<Integer> getRateList() {
-   //     return rateList;
-   // }
-
     public String getAddress() {
         return address;
     }
 
-//    public double getRating(){
-//        double temp = 0;
-//        for(int i = 0; i < rateList.size(); i++){
-//            temp += rateList.get(i);
-//        }
-//        if(rateList.size() != 0){
-//            return temp/rateList.size();
-//        }
-//        return 0;
-//    }
 
     public ArrayList<String> getCategories() {
         return categories;
