@@ -10,7 +10,7 @@ public class Place {
     private ArrayList<String[]> reviews;
 
     public Place(String address){
-        reviewsFromFile();
+        //reviewsFromFile();
         this.address = address;
     }
 
