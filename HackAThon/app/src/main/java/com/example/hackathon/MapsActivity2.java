@@ -96,9 +96,18 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
 
         // Add a marker in Sydney and move the camera
         LatLng toronto = new LatLng(43.663376, -79.397599);
-        mMap.addMarker(new MarkerOptions().position(toronto).title("Marker in Toronto")
+        mMap.addMarker(new MarkerOptions().position(toronto).title("Your Location")
                 .snippet("This location has a Ramp and Electronic Entrance")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+
+        LatLng robarts = new LatLng(43.664415, -79.399590);
+        mMap.addMarker(new MarkerOptions().position(robarts).title("Robarts Library")
+                .snippet("This location has an Electronic Entrance")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+
+        LatLng timhortons = new LatLng(43.668154, -79.397678);
+        mMap.addMarker(new MarkerOptions().position(timhortons).title("Tim Hortons")
+                .snippet("246 Bloor St W, Toronto, ON M5S 1V4")                .icon(BitmapDescriptorFactory.fromResource(R.drawable.food2)));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
         try {

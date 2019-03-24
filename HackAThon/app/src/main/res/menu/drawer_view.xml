@@ -3,9 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_access"
             android:icon="@drawable/access"
-            android:title="string/import" />
+            android:title="Accessibility Map" />
+        <item
+            android:id="@+id/nav_POI"
+            android:icon="@drawable/poi"
+            android:title="Points of Interest" />
     </group>
 
 </menu>
