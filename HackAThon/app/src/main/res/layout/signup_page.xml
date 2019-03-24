@@ -1,33 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
 
-    android:background="@drawable/template_map" >
+android:background="@drawable/template_map" >
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="254dp"
-        android:layout_height="156dp"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="120dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="120dp"
         android:contentDescription="@string/string_logo"
         android:foreground="@drawable/logo_hackathon" />
 
-    <EditText
-        android:id="@+id/user_name"
-        android:layout_width="300dp"
-        android:layout_height="90px"
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_centerHorizontal="true"
-        android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:layout_marginTop="300dp"
-        android:ems="10"
-        android:hint="username"
-        android:inputType="text" />
+        android:layout_marginTop="120dp"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:text="Welcome!"
+
+        android:textColor="@color/common_google_signin_btn_text_dark_default"/>
+
+<EditText
+    android:id="@+id/user_email"
+    android:layout_width="300dp"
+    android:layout_height="90px"
+    android:paddingLeft="10dp"
+    android:layout_centerHorizontal="true"
+    android:background="@color/common_google_signin_btn_text_dark_pressed"
+    android:layout_marginTop="200dp"
+    android:ems="10"
+    android:hint="*Email"
+    android:inputType="text" />
+
+\<EditText
+    android:id="@+id/user_name"
+    android:layout_width="300dp"
+    android:layout_height="90px"
+    android:paddingLeft="10dp"
+    android:layout_centerHorizontal="true"
+    android:background="@color/common_google_signin_btn_text_dark_pressed"
+    android:layout_marginTop="250dp"
+    android:ems="10"
+    android:hint="*Username"
+    android:inputType="text" />
 
     <EditText
         android:id="@+id/user_password"
@@ -36,10 +62,22 @@
         android:paddingLeft="10dp"
         android:layout_centerHorizontal="true"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:layout_marginTop="300dp"
+        android:ems="10"
+        android:hint="*Password"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/user_Cpassword"
+        android:layout_width="300dp"
+        android:layout_height="90px"
+        android:paddingLeft="10dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:layout_marginTop="350dp"
         android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword" />
+        android:hint="*Confirm Password"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/login"
@@ -51,7 +89,7 @@
         android:layout_marginTop="410dp"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
 
-        android:text="Login" />
+        android:text="sign up" />
 
     <TextView
         android:id="@+id/textView"
@@ -62,6 +100,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="470dp"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:text="Don't have an account? Sign up" />
+        android:text="Already have an account? Login here" />
 
 </RelativeLayout>
