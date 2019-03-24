@@ -10,6 +10,13 @@
             android:id="@+id/nav_POI"
             android:icon="@drawable/poi"
             android:title="Points of Interest" />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add"
+            android:title="Add Category" />
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
     </group>
 
 </menu>

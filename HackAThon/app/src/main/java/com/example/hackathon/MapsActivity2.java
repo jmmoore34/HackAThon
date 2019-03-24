@@ -3,6 +3,7 @@ package com.example.hackathon;
 import android.content.ClipData;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -51,16 +52,16 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        drawerLayout.closeDrawers();
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        // Handle navigation view item clicks here.
+                        switch (item.getItemId()) {
 
-                        // Add code here to update the UI based on the item selected
-                        // For example, swap UI fragments here
-
+                            case R.id.nav_access: {
+                                setCatagory("accessible");
+                            }
+                        }
+                        //close navigation drawer
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         return true;
                     }
                 });
@@ -91,13 +92,12 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
                 }
         );
 
-        NavigationView option = findViewById(R.id.nav_access);
-        option.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setCatagory("accessible");
-            }
-        });
+//        findViewById(R.id.drawer_layout).findViewById(R.id.nav_access).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setCatagory("accessible");
+//            }
+//        });
     }
 
 
@@ -120,11 +120,12 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
         temp.add("accessible");
         PlaceManager.addPlace(new Place(new LatLng(43.664415, -79.399590), temp, "Robarts Library"));
         PlaceManager.addPlace(new Place(new LatLng(43.668154, -79.397678), temp, "Tim Hortons"));
+        PlaceManager.addPlace(new Place(new LatLng(43.663376, -79.397599), temp, "Your location"));
         // Add a marker in Sydney and move the camera
-        LatLng toronto = new LatLng(43.663376, -79.397599);
-        mMap.addMarker(new MarkerOptions().position(toronto).title("Your Location")
-                .snippet("This location has a Ramp and Electronic Entrance")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
+//        LatLng toronto = new LatLng(43.663376, -79.397599);
+//        mMap.addMarker(new MarkerOptions().position(toronto).title("Your Location")
+//                .snippet("This location has a Ramp and Electronic Entrance")
+//                .icon(BitmapDescriptorFactory.fromResource(R.drawable.access)));
 
 //        LatLng robarts = new LatLng(43.664415, -79.399590);
 //        mMap.addMarker(new MarkerOptions().position(robarts).title("Robarts Library")
@@ -135,7 +136,7 @@ public class MapsActivity2 extends AppCompatActivity implements OnMapReadyCallba
 //        mMap.addMarker(new MarkerOptions().position(timhortons).title("Tim Hortons")
 //                .snippet("246 Bloor St W, Toronto, ON M5S 1V4")                .icon(BitmapDescriptorFactory.fromResource(R.drawable.food2)));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(43.663376, -79.397599)));
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
