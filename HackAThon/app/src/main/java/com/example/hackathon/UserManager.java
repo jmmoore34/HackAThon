@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 public class UserManager {
 
-    public static ArrayList<User> userAccounts;
+    public static ArrayList<User> userAccounts = new ArrayList<>();
 
-    public UserManager(){
+    public UserManager() throws IOException {
         userAccounts = new ArrayList<>();
-        userFromFile();
-        addManager();
+        //userFromFile();
+        //addManager();
     }
 
     public static void addManager(){
@@ -45,27 +45,29 @@ public class UserManager {
      * Reads in the list of user accounts from a file.
      * Format of: email, password
      */
-    public static void userFromFile() {
+    public static void userFromFile() throws IOException {
         userAccounts = new ArrayList<>();
-        addManager();
-        if (new File("./users.txt").exists()) {
+        File file = new File("./users.txt");
+        if (file.exists()) {
             try {
                 String line;
-                BufferedReader file = new BufferedReader(new FileReader("./users.txt"));
-                while ((line = file.readLine()) != null) {
+                BufferedReader fileTemp = new BufferedReader(new FileReader("./users.txt"));
+                while ((line = fileTemp.readLine()) != null) {
                     String[] info = line.split(",");
                     addUserAccount(new User(info[0], info[1], info[2]));
                 }
-                file.close();
+                fileTemp.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else {
+            file.createNewFile();
         }
     }
 
     public static void addUserAccount(User user){
         userAccounts.add(user);
-        userToFile();
+        //userToFile();
     }
 
     public static boolean signUp(String username, String password, String email){
@@ -75,7 +77,7 @@ public class UserManager {
             }
         }
         userAccounts.add(new User(username, password, email));
-        userToFile();
+        //userToFile();
         return true;
     }
 

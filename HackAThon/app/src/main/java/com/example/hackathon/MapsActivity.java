@@ -19,6 +19,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -31,8 +33,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 //.findFragmentById(R.id.map);
         //mapFragment.getMapAsync(this);
-        UserManager.userFromFile();
-        PlaceManager.placesFromFile();
+//        try {
+//            UserManager.userFromFile();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        UserManager.addManager();
+//        PlaceManager.placesFromFile();
         final Button login = findViewById(R.id.login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
