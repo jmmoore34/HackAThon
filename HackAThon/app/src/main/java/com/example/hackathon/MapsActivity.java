@@ -39,7 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 EditText password = findViewById(R.id.user_password);
                 User user = users.login(username.getText().toString(), password.getText().toString());
                 if(user != null){
-                    //TODO next screen once logged in
+                    Intent intent = new Intent(MapsActivity.this, MapsActivity2.class);
+                    startActivity(intent);
                 }
             }
         });
