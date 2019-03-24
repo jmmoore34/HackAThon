@@ -13,7 +13,13 @@ public class UserManager {
     ArrayList<User> userAccounts;
 
     public UserManager(){
+        userAccounts = new ArrayList<>();
+        userFromFile();
+        addManager();
+    }
 
+    public void addManager(){
+        addUserAccount(new User("admin", "admin", "admin@admin"));
     }
     /**
      * Reads users from a file and adds them to userAccounts list.
@@ -25,7 +31,8 @@ public class UserManager {
             for (User userAccount : userAccounts) {
                 String password = userAccount.getPassword();
                 String username = userAccount.getUsername();
-                file.write(username + "," + password);
+                String email = userAccount.getEmail();
+                file.write(username + "," + password + "," + email);
                 file.newLine();
             }
             file.close();
@@ -45,7 +52,7 @@ public class UserManager {
                 BufferedReader file = new BufferedReader(new FileReader("./users.txt"));
                 while ((line = file.readLine()) != null) {
                     String[] info = line.split(",");
-                    addUserAccount(new User(info[0], info[1]));
+                    addUserAccount(new User(info[0], info[1], info[2]));
                 }
                 file.close();
             } catch (IOException e) {
@@ -56,15 +63,26 @@ public class UserManager {
 
     public void addUserAccount(User user){
         userAccounts.add(user);
+        userToFile();
     }
 
-    public boolean signUp(String email, String password){
+    public boolean signUp(String username, String password, String email){
         for(User user : userAccounts){
             if(email.equals(user.getUsername())){
                 return false;
             }
         }
-        userAccounts.add(new User(email, password));
+        userAccounts.add(new User(username, password, email));
+        userToFile();
         return true;
+    }
+
+    public User login(String username, String password){
+        for(User us : userAccounts){
+            if(us.getUsername().equals(username) && us.getPassword().equals(password)){
+                return us;
+            }
+        }
+        return null;
     }
 }

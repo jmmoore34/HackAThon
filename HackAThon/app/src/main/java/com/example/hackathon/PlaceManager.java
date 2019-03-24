@@ -13,44 +13,75 @@ public class PlaceManager {
     ArrayList<Place> places;
 
     public PlaceManager(){
-        //placesToFile();
+        places = new ArrayList<>();
+        placesFromFile();
     }
-//    /**
-//     * Reads users from a file and adds them to userAccounts list.
-//     * Format of: username, password
-//     */
-//    public void placesToFile() {
-//        try {
-//            BufferedWriter file = new BufferedWriter(new FileWriter("./places.txt"));
-//            for (User userAccount : userAccounts) {
-//                String password = userAccount.getPassword();
-//                String username = userAccount.getUsername();
-//                file.write(username + "," + password);
-//                file.newLine();
-//            }
-//            file.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
-//    /**
-//     * Reads in the list of user accounts from a file.
-//     * Format of: email, password
-//     */
-//    private void userFromFile() {
-//        if (new File("./places.txt").exists()) {
-//            try {
-//                String line;
-//                BufferedReader file = new BufferedReader(new FileReader("./users.txt"));
-//                while ((line = file.readLine()) != null) {
-//                    String[] info = line.split(",");
-//                    addUserAccount(new User(info[0], info[1]));
-//                }
-//                file.close();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    public void addPlace(Place place){
+        places.add(place);
+        placesToFile();
+    }
+
+    public Place getPlaceByAddress(String address){
+        for(Place plc: places){
+            if(plc.getAddress().equalsIgnoreCase(address)){
+                return plc;
+            }
+        }
+        return null;
+    }
+    /**
+     * Reads users from a file and adds them to userAccounts list.
+     * Format of: username, password
+     */
+    public void placesToFile() {
+        try {
+            BufferedWriter file = new BufferedWriter(new FileWriter("./places.txt"));
+            for (Place place: places){
+                String temp = "";
+                for(String cat : place.getCategories()){
+                    temp = temp + cat + ",";
+                }
+                file.write(place.getAddress() + "," + temp);
+                file.newLine();
+            }
+            file.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reads in the list of user accounts from a file.
+     * Format of: email, password
+     */
+    private void placesFromFile() {
+        if (new File("./places.txt").exists()) {
+            try {
+                String line;
+                BufferedReader file = new BufferedReader(new FileReader("./users.txt"));
+                while ((line = file.readLine()) != null) {
+                    String[] info = line.split(",");
+                    ArrayList<String> temp = new ArrayList<>();
+                    for(int i = 1; i < info.length; i++){
+                        temp.add(info[i]);
+                    }
+                    places.add(new Place(info[0], temp));
+                }
+                file.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<Place> getCatagory(String category){
+        ArrayList<Place> temp = new ArrayList<>();
+        for(Place plc : places){
+            if(plc.hasCategory(category)){
+                temp.add(plc);
+            }
+        }
+        return temp;
+    }
 }
