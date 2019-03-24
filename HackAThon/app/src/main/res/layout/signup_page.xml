@@ -43,7 +43,7 @@ android:background="@drawable/template_map" >
     android:hint="*Email"
     android:inputType="text" />
 
-\<EditText
+<EditText
     android:id="@+id/user_name"
     android:layout_width="300dp"
     android:layout_height="90px"
