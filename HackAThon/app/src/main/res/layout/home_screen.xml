@@ -4,16 +4,16 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
 
-    android:background="@drawable/template_map" >
+    android:background="@drawable/map_bg2" >
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="254dp"
+        android:layout_width="204dp"
         android:layout_height="156dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="120dp"
+        android:layout_marginLeft="140dp"
         android:layout_marginTop="70dp"
-        android:layout_marginRight="120dp"
+        android:layout_marginRight="140dp"
         android:contentDescription="@string/string_logo"
         android:foreground="@drawable/logo_hackathon" />
 
